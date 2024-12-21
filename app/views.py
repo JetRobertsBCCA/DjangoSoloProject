@@ -1,11 +1,25 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm, CustomUserEditForm, UserSearchForm
 from .models import CustomUser
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView, PasswordResetView, PasswordResetConfirmView
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+
+def search_users(request):
+    form = UserSearchForm()
+    users = CustomUser.objects.all()
+    
+    if request.method == 'GET':
+        role = request.GET.get('role')
+        languages = request.GET.get('languages')
+        
+        if role:
+            users = users.filter(role=role)
+        if languages:
+            users = users.filter(languages__icontains=languages)
+    return render(request, 'users/search_results.html',{'form': form, 'users':users})
 
 def profile(request):
     if request.method == 'POST':
@@ -34,11 +48,11 @@ class CustomLoginView(LoginView):
     template_name = 'users/login.html'
     
 class CustomLogoutView(LogoutView):
-    template_name = 'users/logged_out.html'
+    template_name = 'users/logout.html'
     
 @login_required
 def profile(request):
-    return render(request, 'users/profile.html')
+    return render(request, 'users/profile.html', {'user': request.user})
 
 class CustomPasswordChangeView(PasswordChangeView):
     template_name = 'users/password_change.html'
@@ -53,5 +67,16 @@ class CustomPasswordResetView(PasswordResetView):
 class CustomPasswordResetConfirmView(PasswordResetConfirmView):
    template_name = 'users/password_reset_confirm.html'
    success_url = '/login/'
+   
+@login_required
+def edit_profile(request):
+    if request.method == 'POST':
+        form = CustomUserEditForm(request.POST, request.FILES, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+    else:
+        form = CustomUserEditForm(instance=request.user)
+    return render(request, 'users/edit_profile.html', {'form':form})
         
 

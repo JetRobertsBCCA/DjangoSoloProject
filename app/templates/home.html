@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'app/styles.css' %}">
+    <title>Home</title>
+</head>
+<body>
+    <header>
+        <h1>Welcome to LangHub</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                {% if user.is_authenticated %}
+                    <form action="{% url 'logout' %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit">Logout</button>
+                    </form>
+                {% else %}
+                    <form action="{% url 'login' %}" method="get">
+                        <button type="submit">Login</button>
+                    </form>
+                    <form action="{% url 'register' %}" method="get">
+                        <button type="submit">Register</button>
+                    </form>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Welcome to My Django App!</h2>
+        {% if user.is_authenticated %}
+            <p>Hello, {{ user.username }}! Thanks for logging in.</p>
+        {% else %}
+            <p>
+                You are not logged in. Please <a href="{% url 'login' %}">log in</a> or
+                <a href="{% url 'register' %}">register</a> to get started.
+            </p>
+        {% endif %}
+    </main>
+</body>
+</html>
