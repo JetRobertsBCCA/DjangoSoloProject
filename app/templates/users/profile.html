@@ -1,5 +1,7 @@
 <h1>{{ user.username }}</h1>
+{% if user.profile_pic %}
 <img src="{{ user.profile_pic.url }}" alt="Profile Picture" width="150" height="150">
+{% endif %}
 <p><strong>Bio:</strong> {{ user.bio }}</p>
 <p><strong>Skills:</strong> {{ user.skills }}</p>
 <p><strong>Languages:</strong> {{ user.languages }}</p>

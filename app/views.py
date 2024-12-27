@@ -9,17 +9,19 @@ from django.contrib.auth.decorators import login_required
 
 def search_users(request):
     form = UserSearchForm()
-    users = CustomUser.objects.all()
-    
+    users = CustomUser.objects.all()  # Start with all users
+
     if request.method == 'GET':
         role = request.GET.get('role')
         languages = request.GET.get('languages')
-        
+
         if role:
             users = users.filter(role=role)
         if languages:
-            users = users.filter(languages__icontains=languages)
-    return render(request, 'users/search_results.html',{'form': form, 'users':users})
+            users = users.filter(languages__icontains=languages) 
+
+    return render(request, 'users/search.html', {'form': form, 'users': users})
+
 
 def profile(request):
     if request.method == 'POST':

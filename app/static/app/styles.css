@@ -106,3 +106,58 @@ footer {
     bottom: 0;
     width: 100%;
 }
+
+/* Navbar Styles */
+/* Navbar Styles */
+nav {
+    background-color: #35424a; /* Dark background for the navbar */
+    padding: 10px 20px; /* Padding for spacing */
+    border-bottom: 2px solid #4a5d6a; /* Subtle border for separation */
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between; /* Space between left and right sections */
+    align-items: center; /* Center items vertically */
+}
+
+.navbar-left a {
+    text-decoration: none; /* Remove underline from links */
+    color: #ffffff; /* White text color */
+    font-weight: bold; /* Bold text for emphasis */
+    margin-right: 20px; /* Space between links */
+}
+
+.navbar-right form {
+    display: inline; /* Keep forms inline */
+}
+
+button {
+    background-color: #007bff; /* Button background color */
+    color: white; /* Button text color */
+    border: none; /* Remove border */
+    padding: 8px 12px; /* Padding for buttons */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+/* General Body Styles */
+body {
+    font-family: Arial, sans-serif; /* Font for the body */
+    line-height: 1.6; /* Line height for readability */
+    background-color: #f4f4f4; /* Light background color */
+    color: #333; /* Dark text color */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+}
+
+/* Main Content */
+main {
+    padding: 20px; /* Padding for main content */
+}
+

@@ -1,0 +1,22 @@
+<nav>
+    <div class="navbar-container">
+        <div class="navbar-left">
+            <a href="{% url 'profile' %}">Profile</a>
+        </div>
+        <div class="navbar-right">
+            {% if user.is_authenticated %}
+                <form action="{% url 'logout' %}" method="POST" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit">Logout</button>
+                </form>
+            {% else %}
+                <form action="{% url 'login' %}" method="get" style="display:inline;">
+                    <button type="submit">Login</button>
+                </form>
+                <form action="{% url 'register' %}" method="get" style="display:inline;">
+                    <button type="submit">Register</button>
+                </form>
+            {% endif %}
+        </div>
+    </div>
+</nav>
