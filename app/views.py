@@ -23,6 +23,7 @@ def search_users(request):
     return render(request, 'users/search.html', {'form': form, 'users': users})
 
 
+
 def profile(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST, request.FILES, instance=request.user)

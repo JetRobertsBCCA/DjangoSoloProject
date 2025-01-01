@@ -1,7 +1,9 @@
 <nav>
     <div class="navbar-container">
         <div class="navbar-left">
+            <a href="{% url 'home' %}">Home</a>  
             <a href="{% url 'profile' %}">Profile</a>
+            <a href="{% url 'search_users' %}">Search Tutors</a>  <!-- Link to the search page -->
         </div>
         <div class="navbar-right">
             {% if user.is_authenticated %}
