@@ -14,5 +14,8 @@ urlpatterns = [
      path('password_reset_confirm/<uidb64>/<token>/', CustomPasswordResetConfirmView.as_view(), name='password_reset_confirm'),
      path('search/', search_users, name='search_users'),
      path('profile/<str:username>/', views.profile, name='user_profile'),
-     
+     path('send_request/', views.send_request, name='send_request'),
+     path('manage_requests/', views.manage_requests, name='manage_requests'),
+     path('accept_request/<int:request_id>/', views.accept_request, name='accept_request'),
+     path('reject_request/<int:request_id>/', views.reject_request, name='reject_request'),
 ]

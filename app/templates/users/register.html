@@ -1,3 +1,5 @@
+<!-- app/templates/users/register.html -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,10 +12,31 @@
 <body>
     {% include 'includes/navbar.html' %}
     <h2>Register</h2>
-    <form method="post" enctype="multipart/form-data">
+    <div class="registration-selection">
+        <button id="tutor-btn">Register as Tutor</button>
+        <button id="student-btn">Register as Student</button>
+    </div>
+    <form method="post" enctype="multipart/form-data" id="tutor-form" style="display:none;">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Register</button>
+        {{ user_form.as_p }}
+        {{ tutor_form.as_p }}
+        <button type="submit" name="tutor">Register as Tutor</button>
     </form>
+    <form method="post" enctype="multipart/form-data" id="student-form" style="display:none;">
+        {% csrf_token %}
+        {{ user_form.as_p }}
+        {{ student_form.as_p }}
+        <button type="submit" name="student">Register as Student</button>
+    </form>
+    <script>
+        document.getElementById('tutor-btn').onclick = function() {
+            document.getElementById('tutor-form').style.display = 'block';
+            document.getElementById('student-form').style.display = 'none';
+        };
+        document.getElementById('student-btn').onclick = function() {
+            document.getElementById('student-form').style.display = 'block';
+            document.getElementById('tutor-form').style.display = 'none';
+        };
+    </script>
 </body>
 </html>
