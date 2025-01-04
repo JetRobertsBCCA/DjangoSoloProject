@@ -10,12 +10,12 @@ from django.contrib.auth.decorators import login_required
 @login_required
 def search_users(request):
     form = UserSearchForm()
-    users = CustomUser.objects.none()  # Start with an empty queryset
+    users = CustomUser.objects.none()
     if request.method == 'GET' and (request.GET.get('role') or request.GET.get('languages')):
         role = request.GET.get('role')
         languages = request.GET.get('languages')
 
-        users = CustomUser.objects.all()  # Initialize with all users
+        users = CustomUser.objects.all() 
         if role:
             users = users.filter(role=role)
         if languages:

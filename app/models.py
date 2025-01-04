@@ -16,4 +16,4 @@ class CustomUser(AbstractUser):
     languages_taught = models.CharField(max_length=500, blank=True)
     languages_learned = models.CharField(max_length=500, blank=True)
     hourly_rate = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True)
-    contact_email = models.EmailField(blank=True, null=True)  # New field
+    contact_email = models.EmailField(blank=True, null=True)
