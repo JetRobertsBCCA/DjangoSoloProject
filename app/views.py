@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login
 from .forms import CustomUserCreationForm, CustomUserEditForm, UserSearchForm
 from .models import CustomUser
@@ -9,8 +9,7 @@ from django.contrib.auth.decorators import login_required
 
 def search_users(request):
     form = UserSearchForm()
-    users = CustomUser.objects.all()  # Start with all users
-
+    users = CustomUser.objects.all() 
     if request.method == 'GET':
         role = request.GET.get('role')
         languages = request.GET.get('languages')
@@ -21,7 +20,6 @@ def search_users(request):
             users = users.filter(languages__icontains=languages) 
 
     return render(request, 'users/search.html', {'form': form, 'users': users})
-
 
 
 def profile(request):
@@ -53,9 +51,15 @@ class CustomLoginView(LoginView):
 class CustomLogoutView(LogoutView):
     template_name = 'users/logout.html'
     
+
 @login_required
-def profile(request):
+def my_profile(request):
     return render(request, 'users/profile.html', {'user': request.user})
+
+@login_required
+def profile(request, username):
+    user = get_object_or_404(CustomUser, username=username)
+    return render(request, 'users/profile.html', {'user': user})
 
 class CustomPasswordChangeView(PasswordChangeView):
     template_name = 'users/password_change.html'

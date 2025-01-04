@@ -7,6 +7,7 @@ class CustomUserCreationForm(UserCreationForm):
         model = CustomUser
         fields = ['username', 'email', 'password1', 'password2', 
                   'profile_pic', 'bio', 'skills', 'languages', 'role']
+
         
 class CustomUserEditForm(forms.ModelForm):
     class Meta:
@@ -14,7 +15,8 @@ class CustomUserEditForm(forms.ModelForm):
         fields = ['profile_pic', 'bio', 'skills', 'languages', 'role']
         
 class UserSearchForm(forms.Form):
-    role = forms.ChoiceField(choices=[('tutor', 'Tutor'), ('student', 'Student'), ('both', 'Both')], required=False)
+    role = forms.ChoiceField(choices=[('tutor', 'Tutor'), ('student', 'Student')], required=False)
     languages = forms.CharField(max_length=500, required=False)
+
         
     

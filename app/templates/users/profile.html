@@ -55,7 +55,9 @@
                 <p><strong>Skills:</strong> {{ user.skills }}</p>
                 <p><strong>Languages:</strong> {{ user.languages }}</p>
                 <p><strong>Role:</strong> {{ user.get_role_display }}</p>
-                <a href="{% url 'edit_profile' %}" class="btn">Edit Profile</a>
+                {% if request.user == user %}
+                    <a href="{% url 'edit_profile' %}" class="btn">Edit Profile</a>
+                {% endif %}
             </div>
         </div>
     </main>

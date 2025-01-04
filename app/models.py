@@ -6,7 +6,6 @@ class CustomUser(AbstractUser):
     ROLE_CHOICES = [
         ('tutor', 'Tutor'),
         ('student', 'Student'),
-        ('both', 'Both'),
     ]
     profile_pic = models.ImageField(upload_to='profile_pics/', blank=True, null=True)
     bio = models.TextField(blank=True)
@@ -14,4 +13,5 @@ class CustomUser(AbstractUser):
     languages = models.CharField(max_length=500, blank=True)
     role = models.CharField(max_length=10, choices=ROLE_CHOICES, default='student')
     languages_taught = models.CharField(max_length=500, blank=True)  
-    languages_learned = models.CharField(max_length=500, blank=True)  
+    languages_learned = models.CharField(max_length=500, blank=True)
+
