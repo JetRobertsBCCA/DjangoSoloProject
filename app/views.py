@@ -7,19 +7,22 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
+@login_required
 def search_users(request):
     form = UserSearchForm()
-    users = CustomUser.objects.all() 
-    if request.method == 'GET':
+    users = CustomUser.objects.none()  # Start with an empty queryset
+    if request.method == 'GET' and (request.GET.get('role') or request.GET.get('languages')):
         role = request.GET.get('role')
         languages = request.GET.get('languages')
 
+        users = CustomUser.objects.all()  # Initialize with all users
         if role:
             users = users.filter(role=role)
         if languages:
-            users = users.filter(languages__icontains=languages) 
+            users = users.filter(languages__icontains=languages)
 
     return render(request, 'users/search.html', {'form': form, 'users': users})
+
 
 
 def profile(request):

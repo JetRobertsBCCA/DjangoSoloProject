@@ -50,15 +50,25 @@
             {% if user.profile_pic %}
                 <img src="{{ user.profile_pic.url }}" alt="Profile Picture" class="profile-picture">
             {% endif %}
+            <!-- app/templates/users/profile.html -->
             <div class="profile-info">
                 <p><strong>Bio:</strong> {{ user.bio }}</p>
                 <p><strong>Skills:</strong> {{ user.skills }}</p>
                 <p><strong>Languages:</strong> {{ user.languages }}</p>
                 <p><strong>Role:</strong> {{ user.get_role_display }}</p>
+                {% if user.role == 'tutor' %}
+                    <p><strong>Hourly Price:</strong> ${{ user.hourly_rate }}</p>
+                {% elif user.role == 'student' %}
+                    <p><strong>Max Hourly Budget:</strong> ${{ user.hourly_rate }}</p>
+                {% endif %}
+                {% if user.contact_email %}
+                    <p><strong>Contact Me:</strong> <a href="mailto:{{ user.contact_email }}?subject=LangHub Request">{{ user.contact_email }}</a></p>
+                {% endif %}
                 {% if request.user == user %}
                     <a href="{% url 'edit_profile' %}" class="btn">Edit Profile</a>
                 {% endif %}
             </div>
+
         </div>
     </main>
 </body>

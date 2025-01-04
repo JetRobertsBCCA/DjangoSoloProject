@@ -6,13 +6,13 @@ class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = CustomUser
         fields = ['username', 'email', 'password1', 'password2', 
-                  'profile_pic', 'bio', 'skills', 'languages', 'role']
+                  'profile_pic', 'bio', 'skills', 'languages', 'role', 'hourly_rate', 'contact_email']
 
-        
 class CustomUserEditForm(forms.ModelForm):
     class Meta:
         model = CustomUser
-        fields = ['profile_pic', 'bio', 'skills', 'languages', 'role']
+        fields = ['profile_pic', 'bio', 'skills', 'languages', 'role', 'hourly_rate', 'contact_email']
+
         
 class UserSearchForm(forms.Form):
     role = forms.ChoiceField(choices=[('tutor', 'Tutor'), ('student', 'Student')], required=False)

@@ -6,13 +6,73 @@
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'app/styles.css' %}">
     <title>Home</title>
+    <style>
+        /* Additional styles for a professional look */
+        .hero {
+            background-color: #35424a;
+            color: #ffffff;
+            padding: 50px 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 300px; /* Adjust height as needed */
+        }
+
+        .hero h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+        }
+
+        .content {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .importance-section {
+            margin-top: 30px;
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .importance-section h2 {
+            font-size: 2em;
+            color: #35424a;
+            margin-bottom: 15px;
+        }
+
+        .importance-section p {
+            margin-bottom: 15px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #35424a;
+            color: #ffffff;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
-    {% include 'includes/navbar.html' %}  <!-- Include the navbar here -->
-    <header>
+    {% include 'includes/navbar.html' %}
+    <div class="hero">
         <h1>Welcome to LangHub</h1>
-    </header>
-    <main>
+        <p>Your gateway to language learning and teaching.</p>
+    </div>
+    <main class="content">
         <h2>Welcome to LangHub</h2>
         {% if user.is_authenticated %}
             <p>Hello, {{ user.username }}! Thanks for logging in.</p>
@@ -22,6 +82,15 @@
                 <a href="{% url 'register' %}">register</a> to get started.
             </p>
         {% endif %}
+        
+        <div class="importance-section">
+            <h2>The Importance of Learning Languages</h2>
+            <p>In today's globalized world, learning a new language is more important than ever. It opens up opportunities for personal and professional growth, enhances cognitive abilities, and fosters cultural understanding. Whether you're traveling, working, or simply exploring new cultures, language skills are invaluable.</p>
+            <p>LangHub makes language learning accessible and enjoyable. Our platform connects learners with experienced tutors, offering personalized lessons tailored to your needs. With a variety of languages to choose from and flexible scheduling, LangHub is your partner in achieving language proficiency.</p>
+        </div>
     </main>
+    <footer>
+        <p>&copy; 2025 LangHub. All rights reserved.</p>
+    </footer>
 </body>
 </html>
