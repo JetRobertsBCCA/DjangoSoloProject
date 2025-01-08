@@ -8,7 +8,7 @@
     <title>Edit Profile</title>
 </head>
 <body>
-    {% include 'includes/navbar.html' %}  <!-- Include the navbar here -->
+    {% include 'includes/navbar.html' %}  
     <h1>Edit Profile</h1>
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
@@ -16,5 +16,6 @@
         <button type="submit">Save Changes</button>
     </form>
     <a href="{% url 'profile' %}">Cancel</a>
+    <a href="{% url 'delete_profile' %}" class="btn">Delete Profile</a>
 </body>
 </html>

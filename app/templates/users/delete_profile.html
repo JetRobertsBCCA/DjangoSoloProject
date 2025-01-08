@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'app/styles.css' %}">
+    <title>Delete Profile</title>
+</head>
+<body>
+    {% include 'includes/navbar.html' %}
+    <h2>Delete Your Profile</h2>
+    <p>To confirm deletion, please type the following:</p>
+    <p><strong>My name is {{ username }}, and I am going to delete my account</strong></p>
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="confirmation" placeholder="Type the confirmation text here" required>
+        <button type="submit">Delete Profile</button>
+    </form>
+    <a href="{% url 'edit_profile' %}">Cancel</a>
+</body>
+</html>

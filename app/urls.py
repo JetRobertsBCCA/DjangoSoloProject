@@ -18,4 +18,6 @@ urlpatterns = [
      path('manage_requests/', views.manage_requests, name='manage_requests'),
      path('accept_request/<int:request_id>/', views.accept_request, name='accept_request'),
      path('reject_request/<int:request_id>/', views.reject_request, name='reject_request'),
+     path('delete-profile/', views.delete_profile, name='delete_profile'),
+
 ]

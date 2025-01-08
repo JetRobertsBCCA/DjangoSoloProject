@@ -1,11 +1,26 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 from .forms import CustomUserCreationForm, CustomUserEditForm, UserSearchForm, TutorCreationForm, StudentCreationForm, StudentTutorRequestForm
 from .models import CustomUser, Tutor, Student, StudentTutorRequest
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView, PasswordResetView, PasswordResetConfirmView
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+
+@login_required
+def delete_profile(request):
+    if request.method == 'POST':
+        confirmation_text = f"My name is {request.user.username}, and I am going to delete my account"
+        user_input = request.POST.get('confirmation', '')
+
+        if user_input == confirmation_text:
+            user = request.user
+            logout(request)  
+            user.delete()  
+            return redirect('home')  
+
+    return render(request, 'users/delete_profile.html', {'username': request.user.username})
+
 
 @login_required
 def search_users(request):
